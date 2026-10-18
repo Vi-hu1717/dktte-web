@@ -1,0 +1,731 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>D.K Thermal Tech Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a spec-sheet catalogue. Charcoal ground, steel hairlines, light photo plates so every
+   machine photo reads like a catalogue plate, and safety amber reserved for numbers, actions and active states. */
+:root {
+  --bg: #14171b;
+  --surface: #1b1f24;
+  --surface-2: #232830;
+  --plate: #e8ebef;
+  --line: #313843;
+  --line-soft: #262c34;
+  --steel: #c3cad3;
+  --steel-dim: #909aa7;
+  --steel-hi: #eef0f3;
+  --amber: #ffb400;
+  --amber-press: #e29c00;
+  --on-amber: #16181c;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--steel); font: 400 1rem/1.65 var(--font-body); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); color: var(--steel-hi); text-wrap: balance; font-weight: 600; }
+h1, h2 { text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; }
+h1 { font-size: clamp(2.4rem, 5.4vw, 4.4rem); font-weight: 700; overflow-wrap: break-word; }
+h2 { font-size: clamp(2rem, 3.8vw, 3rem); }
+h3 { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+.wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.section { padding-block: clamp(44px, 6.5vw, 88px); }
+.section + .section { border-top: 1px solid var(--line-soft); }
+.eyebrow { font: 500 0.78rem/1.3 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); }
+.sec-head { display: grid; gap: 0.9rem; max-width: 50rem; margin-bottom: clamp(26px, 4vw, 42px); }
+.lede { font-size: 1.1rem; max-width: 64ch; color: var(--steel); }
+.muted { color: var(--steel-dim); }
+[id^="s-"] { scroll-margin-top: 92px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.85rem 1.3rem; border-radius: 2px; border: 1px solid transparent; font: 600 0.95rem/1.2 var(--font-body); letter-spacing: 0.02em; text-decoration: none; cursor: pointer; transition: background-color 0.15s, border-color 0.15s, color 0.15s; }
+.btn-amber { background: var(--amber); color: var(--on-amber); }
+.btn-amber:hover { background: var(--amber-press); }
+.btn-ghost { border-color: var(--steel-dim); color: var(--steel-hi); background: transparent; }
+.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+/* Header */
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; }
+.brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; min-width: 0; }
+.brand img { flex: none; width: 3rem; height: auto; background: #fff; border-radius: 2px; padding: 2px; display: block; }
+.brand-name { display: grid; line-height: 1.05; min-width: 0; }
+.brand-name strong { font: 700 1.2rem/1.05 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; color: var(--steel-hi); }
+.brand-name small { font: 500 0.66rem/1.3 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel-dim); }
+.nav { display: flex; align-items: center; gap: 0.25rem; }
+.nav a.link { padding: 0.6rem 0.85rem; text-decoration: none; font: 500 0.82rem/1 var(--font-body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); border-bottom: 2px solid transparent; white-space: nowrap; }
+.nav a.link:hover { color: var(--steel-hi); }
+.nav a.link[aria-current="page"] { color: var(--steel-hi); border-bottom-color: var(--amber); }
+.nav .btn { margin-left: 0.75rem; }
+.menu-btn { display: none; background: transparent; border: 1px solid var(--line); color: var(--steel-hi); padding: 0.55rem 0.85rem; font: 500 0.8rem/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 2px; }
+
+/* Hero */
+.hero { padding-block: clamp(36px, 6vw, 80px) clamp(36px, 5vw, 64px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.hero-copy { min-width: 0; display: grid; gap: 1.4rem; justify-items: start; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.hero-art { position: relative; background: radial-gradient(120% 90% at 50% 35%, #2c333d 0%, #1b1f24 70%); border: 1px solid var(--line); padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem) 0; display: grid; justify-items: center; min-width: 0; }
+.hero-art img.oven { width: min(62%, 300px); height: auto; display: block; }
+.hero-plate { justify-self: stretch; margin-inline: calc(-1 * clamp(1rem, 3vw, 2rem)); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.8rem clamp(1rem, 3vw, 2rem); background: var(--surface-2); border-top: 1px solid var(--line); font: 500 0.74rem/1.4 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); flex-wrap: wrap; }
+.hero-plate b { color: var(--amber); font-weight: 500; }
+
+/* Stats */
+.strip { border-block: 1px solid var(--line); background: var(--surface); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stat { padding: 1.5rem 1.25rem 1.5rem 0; display: grid; gap: 0.25rem; align-content: start; }
+.stat + .stat { padding-left: 1.25rem; border-left: 1px solid var(--line); }
+.stat .n { font: 700 clamp(2.4rem, 4.5vw, 3.4rem)/1 var(--font-display); color: var(--amber); letter-spacing: 0.01em; }
+.stat .l { font: 500 0.78rem/1.4 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); }
+.stats.promises { border-top: 1px solid var(--line); }
+.stats.promises .stat { padding-block: 1.1rem; }
+.stats.promises .l { color: var(--steel-hi); font-size: 0.82rem; }
+
+/* Cards */
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: clamp(1.25rem, 2.4vw, 1.75rem); display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.card p { color: var(--steel); }
+.cat { background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; text-decoration: none; min-width: 0; transition: border-color 0.15s; }
+.cat:hover { border-color: var(--amber); }
+.cat .ph { background: var(--plate); aspect-ratio: 4 / 3; display: grid; place-items: center; }
+.cat .ph img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.cat .tx { padding: 1.25rem 1.4rem 1.4rem; display: grid; gap: 0.6rem; }
+.cat .go { font: 600 0.9rem/1.2 var(--font-body); color: var(--amber); }
+
+/* Product tiles */
+.pgrid { display: grid; gap: 1.1rem; }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.tile { background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; min-width: 0; transition: border-color 0.15s; }
+.tile:hover { border-color: var(--steel-dim); }
+.tile .ph { background: var(--plate); aspect-ratio: 4 / 3; display: grid; place-items: center; overflow: hidden; }
+.tile .ph img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.tile h3 { font-size: 1.2rem; padding: 0.85rem 1rem 1rem; line-height: 1.15; border-top: 1px solid var(--line); flex: 1; }
+.sub { display: flex; align-items: baseline; gap: 1rem; margin: 2.25rem 0 1rem; flex-wrap: wrap; }
+.sub:first-of-type { margin-top: 0; }
+.sub h3 { font-size: 1.35rem; color: var(--steel); }
+.sub span { font: 500 0.72rem/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-dim); }
+
+/* Testimonials */
+.quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.quote { background: var(--surface); border: 1px solid var(--line); padding: clamp(1.25rem, 2.4vw, 1.75rem); display: grid; gap: 1.25rem; align-content: start; min-width: 0; margin: 0; }
+.quote blockquote { margin: 0; color: var(--steel-hi); line-height: 1.6; text-wrap: pretty; }
+.quote blockquote::before { content: "\201C"; display: block; font: 700 3.4rem/0.7 var(--font-display); color: var(--amber); margin-bottom: 0.4rem; }
+.quote figcaption { font: 600 1.35rem/1 var(--font-display); text-transform: uppercase; letter-spacing: 0.04em; color: var(--steel-hi); border-top: 1px solid var(--line); padding-top: 1rem; }
+
+/* CTA band */
+.cta-band { background: var(--surface-2); border-block: 1px solid var(--line); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem 3rem; flex-wrap: wrap; padding-block: clamp(34px, 5vw, 56px); }
+.cta-inner .t { display: grid; gap: 0.6rem; max-width: 44rem; }
+
+/* Page header */
+.page-head { padding-block: clamp(36px, 6vw, 72px) clamp(24px, 4vw, 36px); border-bottom: 1px solid var(--line-soft); }
+.page-head .inner { display: grid; gap: 1rem; max-width: 54rem; }
+.jump { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.5rem; }
+.jump a { font: 500 0.75rem/1 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--steel); border: 1px solid var(--line); padding: 0.65rem 0.85rem; border-radius: 2px; }
+.jump a:hover { border-color: var(--amber); color: var(--amber); }
+
+/* Services */
+.service { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
+.service .big { font-size: 1.25rem; line-height: 1.6; color: var(--steel-hi); max-width: 46ch; }
+.service .label { font: 600 1.6rem/1.1 var(--font-display); text-transform: uppercase; letter-spacing: 0.03em; color: var(--amber); margin-bottom: 0.75rem; }
+
+/* About / founder */
+.about { display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr); gap: clamp(24px, 5vw, 64px); align-items: center; }
+.logo-plate { background: #fff; padding: clamp(1rem, 3vw, 2rem); display: grid; place-items: center; border: 1px solid var(--line); }
+.logo-plate img { width: min(100%, 300px); height: auto; display: block; }
+.about p { font-size: 1.05rem; max-width: 70ch; }
+.photo { margin: 0; border: 1px solid var(--line); background: var(--plate); }
+.photo img { display: block; width: 100%; height: auto; }
+.photo figcaption { background: var(--surface); border-top: 1px solid var(--line); padding: 0.7rem 1rem; font: 500 0.72rem/1.4 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel-dim); }
+.founder { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
+.founder-photo { display: grid; gap: 1.25rem; justify-items: start; position: sticky; top: 100px; }
+.founder-photo img { width: min(100%, 340px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 6px solid var(--surface-2); outline: 2px solid var(--amber); outline-offset: 4px; display: block; }
+.founder-photo .nm { display: grid; gap: 0.2rem; }
+.founder-photo .nm b { font: 700 2rem/1 var(--font-display); text-transform: uppercase; letter-spacing: 0.03em; color: var(--steel-hi); }
+.founder-photo .nm span { font: 500 0.78rem/1.4 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); }
+.bio { display: grid; }
+.bio > div { border-top: 1px solid var(--line); padding-block: 1.25rem 1.4rem; display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; }
+.bio h3 { font: 500 0.74rem/1.6 var(--font-mono); letter-spacing: 0.14em; color: var(--amber); }
+.bio p { max-width: 62ch; }
+.bio ul li { position: relative; padding-left: 1.2rem; }
+.bio ul li + li { margin-top: 0.5rem; }
+.bio ul li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 0.6rem; height: 2px; background: var(--amber); }
+.bio .q { font: 500 1.35rem/1.4 var(--font-display); color: var(--steel-hi); letter-spacing: 0.01em; }
+.bio .q cite { display: block; margin-top: 0.6rem; font: 500 0.78rem/1.4 var(--font-mono); font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel-dim); }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(24px, 4vw, 48px); align-items: start; padding-block: clamp(30px, 5vw, 60px) clamp(46px, 7vw, 88px); }
+.form-card { background: var(--surface); border: 1px solid var(--line); padding: clamp(1.25rem, 3vw, 2.25rem); display: grid; gap: 1.5rem; min-width: 0; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem 1.25rem; }
+.field { display: grid; gap: 0.45rem; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font: 500 0.72rem/1.3 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-dim); }
+.field label .req { color: var(--amber); }
+.field input, .field select, .field textarea { width: 100%; background: var(--bg); color: var(--steel-hi); border: 1px solid var(--line); border-radius: 2px; padding: 0.8rem 0.85rem; font: 400 1rem/1.4 var(--font-body); min-width: 0; }
+.field textarea { min-height: 8.5rem; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber); }
+.field input::placeholder, .field textarea::placeholder { color: #68727f; }
+.form-foot { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.summary { display: grid; gap: 1.1rem; }
+.summary pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 400 0.88rem/1.7 var(--font-mono); color: var(--steel-hi); background: var(--bg); border: 1px solid var(--line); padding: 1.1rem; }
+.summary .acts { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.status { font: 500 0.8rem/1.3 var(--font-mono); letter-spacing: 0.06em; color: var(--amber); }
+.side { display: grid; gap: 1.25rem; min-width: 0; }
+.row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 0.75rem; padding-block: 0.8rem; border-top: 1px solid var(--line-soft); }
+.row .k { font: 500 0.72rem/1.7 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-dim); }
+.row .v { color: var(--steel-hi); overflow-wrap: anywhere; }
+.row .v a { text-decoration: none; }
+.row .v a:hover { color: var(--amber); }
+.row .v span { display: block; }
+
+/* WhatsApp */
+.wa { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; width: 3.4rem; height: 3.4rem; border-radius: 50%; background: #25d366; display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0,0,0,0.45); transition: transform 0.15s; }
+.wa:hover { transform: scale(1.06); }
+.wa svg { width: 1.9rem; height: 1.9rem; fill: #fff; }
+
+/* Footer */
+.hazard { height: 10px; background: repeating-linear-gradient(-45deg, var(--amber) 0 14px, var(--bg) 14px 28px); }
+.site-footer { background: var(--surface); border-top: 1px solid var(--line); }
+.foot-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 2rem; padding-block: 2.5rem; }
+.foot-grid h4 { font: 500 0.72rem/1.3 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel-dim); margin-bottom: 0.75rem; }
+.foot-grid li + li { margin-top: 0.4rem; }
+.foot-grid a { text-decoration: none; }
+.foot-grid a:hover { color: var(--amber); }
+.foot-grid .brand { margin-bottom: 1rem; }
+.copy { border-top: 1px solid var(--line-soft); padding-block: 1rem; font: 400 0.8rem/1.4 var(--font-mono); color: var(--steel-dim); display: flex; justify-content: space-between; gap: 0.5rem 1rem; flex-wrap: wrap; }
+
+/* Responsive */
+@media (max-width: 1060px) { .g5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1000px) {
+  .menu-btn { display: inline-flex; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 0.5rem clamp(16px, 4vw, 40px) 1rem; }
+  .site-header.open .nav { display: flex; }
+  .nav a.link { padding: 0.95rem 0; border-bottom: 1px solid var(--line-soft); }
+  .nav a.link[aria-current="page"] { border-bottom-color: var(--amber); }
+  .nav .btn { margin: 1rem 0 0; }
+  .hero-grid, .contact-grid, .service, .about, .founder { grid-template-columns: minmax(0, 1fr); }
+  .founder-photo { position: static; }
+  .grid-3, .split, .quotes { grid-template-columns: minmax(0, 1fr); }
+  .g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foot-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .foot-grid > div:first-child { grid-column: 1 / -1; }
+  .about .logo-plate { justify-self: start; width: min(100%, 260px); }
+}
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: minmax(0, 1fr); }
+  .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .stats.promises .stat { padding-block: 0.9rem; }
+  .brand-name small { display: none; }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
+  .bio > div { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; }
+  .btn { width: 100%; }
+  .nav .btn { width: 100%; }
+  .menu-btn { width: auto; }
+}
+@media (max-width: 520px) { .g3, .g4, .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tile h3 { font-size: 1.05rem; padding: 0.7rem 0.75rem 0.85rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .cat, .tile, .wa { transition: none; } }
+</style>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap bar">
+    <a class="brand" href="#home" data-go="home" aria-label="D.K Thermal Tech Engineering, home">
+      <img src="img/logo.png" alt="D.K. Thermal Tech Engineering, Shivamogga - 577 203" width="399" height="349">
+      <span class="brand-name"><strong>D.K Thermal Tech</strong><small>Engineering &middot; Shivamogga</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a class="link" href="#home" data-go="home">Home</a>
+      <a class="link" href="#products" data-go="products">Products &amp; Services</a>
+      <a class="link" href="#infrastructure" data-go="infrastructure">Infrastructure</a>
+      <a class="link" href="#contact" data-go="contact">Contact Us</a>
+      <a class="btn btn-amber" href="#contact" data-go="contact">Request a Technical Quote <span aria-hidden="true">&rarr;</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HOME ============ -->
+  <section class="page" id="p-home" hidden>
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Shivamogga &middot; 577 203</p>
+          <h1>We are manufacturers and suppliers of industrial ovens</h1>
+          <p class="lede">D.K Thermal Tech Engineering makes furnaces, ovens, quenching systems and thyristor control panels, with installation and technical training for the equipment we provide.</p>
+          <div class="hero-actions">
+            <a class="btn btn-amber" href="#contact" data-go="contact">Request a Technical Quote <span aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn-ghost" href="#products" data-go="products">View products &amp; services</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img class="oven" src="img/hero-oven.png" alt="Industrial box oven with digital controller" width="362" height="554">
+          <div class="hero-plate"><span>D.K. Thermal Tech Engineering</span><b>Shivamogga &ndash; 577 203</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat"><span class="n">50+</span><span class="l">Projects completed</span></div>
+          <div class="stat"><span class="n">10 Years+</span><span class="l">Work experience</span></div>
+          <div class="stat"><span class="n">5+</span><span class="l">Service offices</span></div>
+        </div>
+        <div class="stats promises">
+          <div class="stat"><span class="l">All over the world supply</span></div>
+          <div class="stat"><span class="l">In time project completion</span></div>
+          <div class="stat"><span class="l">Reasonable price and good workers</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">Our products</p>
+          <h2>Furnaces, ovens and control panels</h2>
+        </div>
+        <div class="grid-3">
+          <a class="cat" href="#furnaces" data-go="furnaces">
+            <div class="ph"><img src="img/gas-fired-40t.jpg" alt="40 ton gas fired heat treatment furnace in operation" loading="lazy"></div>
+            <div class="tx"><h3>Furnaces</h3><p>Bogie earth, continuous, annealing, stress relieving, muffle and aluminium melting furnaces, plus quenching systems.</p><span class="go">View furnaces &rarr;</span></div>
+          </a>
+          <a class="cat" href="#ovens" data-go="ovens">
+            <div class="ph"><img src="img/powder-coating-oven.jpg" alt="Powder coating oven with control panel" loading="lazy"></div>
+            <div class="tx"><h3>Ovens</h3><p>Welding rod, hot air, core heating, powder coating and mould heating ovens, tray dryers and incubators.</p><span class="go">View ovens &rarr;</span></div>
+          </a>
+          <a class="cat" href="#panels" data-go="panels">
+            <div class="ph"><img src="img/panel-60kw.jpg" alt="60 kW thyristor panel controller" loading="lazy"></div>
+            <div class="tx"><h3>Control Panels</h3><p>Thyristor panel and power controllers from 36 kW to 140 kW.</p><span class="go">View control panels &rarr;</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">Client feedback</p>
+          <h2>Client Testimonials</h2>
+        </div>
+        <div class="quotes">
+          <figure class="quote">
+            <blockquote>I highly recommend DK Thermal Tech Engineering. Their commitment to delivering top-notch solutions is evident. Yes, I would definitely recommend DK Thermal Tech Engineering.</blockquote>
+            <figcaption>Sanjay</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>DK Thermal Tech Engineering has been a game-changer for our business! Their custom-designed solutions have significantly improved our process efficiency and productivity. The team's expertise, timely delivery, and after-sales support have been exceptional. Their commitment to quality and customer satisfaction is genuinely impressive. We highly recommend DK Thermal Tech Engineering for any thermal engineering needs.</blockquote>
+            <figcaption>Barath</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>DK Thermal Tech Engineering provided excellent thermal engineering solutions, optimizing production and saving costs. Their team's expertise, timely delivery, and outstanding customer service make them a trusted partner. Highly recommended for reliable and innovative thermal engineering solutions.</blockquote>
+            <figcaption>Harsha</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ PRODUCTS & SERVICES ============ -->
+  <section class="page" id="p-products" hidden>
+    <div class="page-head">
+      <div class="wrap">
+        <div class="inner">
+          <p class="eyebrow">Products &amp; Services</p>
+          <h1>Furnaces, ovens and control panels</h1>
+          <p class="lede">Every machine below is built by D.K Thermal Tech Engineering in Shivamogga. Send your requirement and we will quote against it.</p>
+          <div class="jump">
+            <a href="#furnaces" data-go="furnaces">Furnaces</a>
+            <a href="#ovens" data-go="ovens">Ovens</a>
+            <a href="#panels" data-go="panels">Control Panels</a>
+            <a href="#services" data-go="services">Our Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="s-furnaces">
+      <div class="wrap">
+        <div class="sec-head"><p class="eyebrow">Product range</p><h2>Furnaces</h2></div>
+        <div class="sub"><h3>Heat treatment furnaces</h3><span>9 models</span></div>
+        <div class="pgrid g3" id="grid-furnaces"></div>
+        <div class="sub"><h3>Muffle, melting and quenching</h3><span>4 models</span></div>
+        <div class="pgrid g4" id="grid-melting"></div>
+      </div>
+    </section>
+
+    <section class="section" id="s-ovens">
+      <div class="wrap">
+        <div class="sec-head"><p class="eyebrow">Product range</p><h2>Ovens</h2></div>
+        <div class="pgrid g3" id="grid-ovens"></div>
+      </div>
+    </section>
+
+    <section class="section" id="s-panels">
+      <div class="wrap">
+        <div class="sec-head"><p class="eyebrow">Product range</p><h2>Control Panels</h2></div>
+        <div class="pgrid g5" id="grid-panels"></div>
+      </div>
+    </section>
+
+    <section class="section" id="s-services">
+      <div class="wrap service">
+        <div>
+          <p class="eyebrow">Our services</p>
+          <h2 style="margin-top:0.9rem">Our Services</h2>
+        </div>
+        <div>
+          <p class="label">Service &amp; Support</p>
+          <p class="big">We focus on complete solutions to our clients by providing value added services like installation, service training, technical training, etc for the equipment we provide.</p>
+          <div style="margin-top:1.75rem"><a class="btn btn-amber" href="#contact" data-go="contact">Request a Technical Quote <span aria-hidden="true">&rarr;</span></a></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ INFRASTRUCTURE ============ -->
+  <section class="page" id="p-infrastructure" hidden>
+    <div class="page-head">
+      <div class="wrap">
+        <div class="inner">
+          <p class="eyebrow">Infrastructure</p>
+          <h1>The company behind the machines</h1>
+          <p class="lede">D.K Thermal Tech Engineering has over 10 years of experience, 50+ projects completed and 5+ service offices, supplying all over the world.</p>
+          <div class="jump">
+            <a href="#about" data-go="about">About the company</a>
+            <a href="#founder" data-go="founder">About the founder</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="s-about">
+      <div class="wrap">
+        <div class="about">
+          <div class="logo-plate"><img src="img/logo.png" alt="D.K. Thermal Tech Engineering logo, Shivamogga - 577 203" width="399" height="349" loading="lazy"></div>
+          <div style="display:grid;gap:1.1rem">
+            <p class="eyebrow">About the company</p>
+            <p>DK Thermal Tech Engineering is a leading manufacturer of laboratory equipment. We specialize in manufacturing a wide range of high-quality equipment, including Deep Freezers, Incubator Machines, High-Pressure Autoclaves, Constant Temp Baths, Industrial Fermenters, and more. Under the esteemed leadership of our proprietor, Reghu, we have built a strong reputation for delivering reliable and efficient products. Our machines are designed for ease of use and high productivity, enabling us to handle large-scale projects with precision and efficiency. At DK Thermal Tech Engineering, we are committed to providing the best solutions to meet the evolving needs of our customers, earning their trust and satisfaction across the market.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="split" style="align-items:center">
+          <figure class="photo">
+            <img src="img/quench-installation.jpg" alt="Rapid quenching system with bogie furnace installed in a plant" width="770" height="436" loading="lazy">
+            <figcaption>Quenching system installation</figcaption>
+          </figure>
+          <div style="display:grid;gap:1.1rem">
+            <p class="eyebrow">Strength in numbers</p>
+            <h2>10 years of innovative technology and tools</h2>
+            <p class="lede">DK Thermal Tech Engineering has very good strength in innovative technology and tools with over 10 years of experience.</p>
+            <div class="stats" style="border-top:1px solid var(--line);margin-top:0.5rem">
+              <div class="stat"><span class="n">50+</span><span class="l">Projects completed</span></div>
+              <div class="stat"><span class="n">10+</span><span class="l">Years of experience</span></div>
+              <div class="stat"><span class="n">5+</span><span class="l">Service offices</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="s-founder">
+      <div class="wrap">
+        <div class="sec-head"><p class="eyebrow">Leadership</p><h2>About Founder</h2></div>
+        <div class="founder">
+          <div class="founder-photo">
+            <img src="img/founder.jpg" alt="Mr Balaji PT, Founder and Managing Director" width="340" height="340" loading="lazy">
+            <div class="nm"><b>Mr Balaji PT</b><span>Founder &amp; Managing Director</span></div>
+          </div>
+          <div class="bio">
+            <div><h3>Introduction</h3><p>Meet Mr BALAJI PT, the visionary behind DK Thermal Tech Engineering. With 10+ years of experience in thermal engineering, Mr BALAJI PT has revolutionized the industry with innovative solutions and exceptional leadership.</p></div>
+            <div><h3>Background</h3><p>Balaji PT holds a BE in Mechanical Engineering from RL JALAPPA INSTITUTE OF TECHNOLOGY. Working at VMH, CHENNAI, they developed a passion for thermal engineering and saw an opportunity to make a difference.</p></div>
+            <div><h3>Vision</h3><p>Balaji PT's vision is to provide cutting-edge thermal engineering solutions that transform industries and improve lives.</p></div>
+            <div><h3>Achievements</h3>
+              <ul>
+                <li>Established DK Thermal Tech Engineering as a leading manufacturer of muffle furnaces and industrial ovens</li>
+                <li>Developed patented technologies for energy-efficient thermal engineering solutions</li>
+                <li>Built a talented team of engineers and professionals</li>
+              </ul>
+            </div>
+            <div><h3>Quote</h3><p class="q">&ldquo;At DK Thermal Tech Engineering, we're driven by a passion for innovation and customer satisfaction. Our goal is to empower industries to achieve excellence through thermal engineering excellence.&rdquo;<cite>Mr BALAJI PT</cite></p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="page" id="p-contact" hidden>
+    <div class="page-head">
+      <div class="wrap">
+        <div class="inner">
+          <p class="eyebrow">Contact Us</p>
+          <h1>Get a free quotation</h1>
+          <p class="lede">Tell us what you need. Our team will come back with a technical quote for your requirement.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap contact-grid">
+      <div class="form-card" id="quote">
+        <form id="quoteForm" class="form-grid" novalidate>
+          <div class="field full"><h2 style="font-size:2rem">Request a Technical Quote</h2></div>
+          <div class="field"><label for="f-name">Your name <span class="req">*</span></label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-company">Company <span class="req">*</span></label><input id="f-company" name="company" type="text" autocomplete="organization" required></div>
+          <div class="field"><label for="f-phone">Phone <span class="req">*</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+          <div class="field"><label for="f-email">Email <span class="req">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field full">
+            <label for="f-interest">Equipment <span class="req">*</span></label>
+            <select id="f-interest" name="interest" required><option value="">Select equipment</option></select>
+          </div>
+          <div class="field full">
+            <label for="f-spec">Requirement</label>
+            <textarea id="f-spec" name="spec" placeholder="Material and load per batch, working temperature, chamber size, power or fuel available, quantity"></textarea>
+          </div>
+          <div class="field full form-foot">
+            <button class="btn btn-amber" type="submit">Request a Technical Quote <span aria-hidden="true">&rarr;</span></button>
+            <span class="muted" id="formMsg" role="status" style="font-size:0.9rem"></span>
+          </div>
+        </form>
+
+        <div class="summary" id="summary" hidden>
+          <h2 style="font-size:2rem">Your enquiry summary</h2>
+          <p class="lede" style="font-size:1rem">Copy this summary and send it to us by email or WhatsApp, or read it out when you call, so we can prepare your quote.</p>
+          <pre id="summaryText" tabindex="0"></pre>
+          <div class="acts">
+            <button class="btn btn-amber" type="button" id="copyBtn">Copy summary</button>
+            <button class="btn btn-ghost" type="button" id="editBtn">Edit enquiry</button>
+            <span class="status" id="copyStatus" role="status"></span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="card">
+          <h3>Headquarters</h3>
+          <div>
+            <div class="row"><span class="k">Contact</span><span class="v">Mr Balaji PT</span></div>
+            <div class="row"><span class="k">Address</span><span class="v">#37/B, Bhadravathi Industrial Area, Machenahalli, Nidige Post, Shivamogga - 577222</span></div>
+            <div class="row"><span class="k">Office hours</span><span class="v"><span>Monday to Saturday</span><span>9:00 am to 6:00 pm</span></span></div>
+            <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:sdktte2021@gmail.com">sdktte2021@gmail.com</a></span></div>
+            <div class="row"><span class="k">Phone</span><span class="v"><span><a href="tel:+918144671613">8144671613</a></span><span><a href="tel:+916360606738">6360606738</a></span></span></div>
+          </div>
+          <a class="btn btn-ghost" href="https://wa.me/918144671613" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<section class="cta-band" id="ctaBand">
+  <div class="wrap cta-inner">
+    <div class="t">
+      <p class="eyebrow">Free quotation</p>
+      <h2 style="font-size:clamp(1.8rem,3.4vw,2.6rem)">Tell us what you need to heat</h2>
+      <p class="muted">Send your requirement and get a free quotation from our Shivamogga team.</p>
+    </div>
+    <a class="btn btn-amber" href="#contact" data-go="contact">Request a Technical Quote <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="hazard" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#home" data-go="home">
+          <img src="img/logo.png" alt="D.K. Thermal Tech Engineering logo" width="399" height="349" loading="lazy">
+          <span class="brand-name"><strong>D.K Thermal Tech</strong><small>Engineering &middot; Shivamogga</small></span>
+        </a>
+        <p class="muted" style="max-width:36ch">#37/B, Bhadravathi Industrial Area, Machenahalli, Nidige Post, Shivamogga - 577222</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="#home" data-go="home">Home</a></li>
+          <li><a href="#products" data-go="products">Products &amp; Services</a></li>
+          <li><a href="#infrastructure" data-go="infrastructure">Infrastructure</a></li>
+          <li><a href="#contact" data-go="contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>sdktte2021@gmail.com</li>
+          <li>8144671613</li>
+          <li>6360606738</li>
+          <li>Mon to Sat, 9:00 am to 6:00 pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy"><span>Copyright &copy; 2020 Mr VISHU</span><span>sdktte2021@gmail.com</span></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/918144671613" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.12.55 4.18 1.6 6L4 28l7.1-1.86a12 12 0 0 0 4.94 1.06h.01C22.7 27.2 28 21.8 28 15.16 28 8.5 22.68 3 16.04 3zm0 22.2a10 10 0 0 1-5.1-1.4l-.37-.22-3.78.99 1.01-3.69-.24-.38a10 10 0 0 1-1.53-5.3c0-5.52 4.5-10 10.04-10 5.52 0 10 4.48 10 10s-4.48 10-10.03 10zm5.5-7.5c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.14-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.64-.93-2.25-.25-.58-.5-.5-.68-.51h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.23 5.13 4.53.72.3 1.28.5 1.72.64.72.23 1.37.2 1.89.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/></svg>
+</a>
+
+<script>
+(function () {
+  var P = {
+    furnaces: [
+      ['Bogie Earth High Temperature Electric Furnace', 'bogie-electric'],
+      ['40 Ton Gas Fired Heat Treatment Furnace', 'gas-fired-40t'],
+      ['Continuous Furnace', 'continuous-furnace'],
+      ['Diesel Type Bogie Earth Heat Treatment Furnace', 'diesel-bogie'],
+      ['Shell Firing Furnace', 'shell-firing'],
+      ['Continuous Annealing Furnace', 'continuous-annealing'],
+      ['Solution Annealing Furnace', 'solution-annealing'],
+      ['Stress Relieving Furnace', 'stress-relieving'],
+      ['Fork Arm Bogie Earth Furnace', 'fork-arm-bogie']
+    ],
+    melting: [
+      ['Muffle Furnaces', 'muffle-furnace'],
+      ['Aluminum Melting Furnace', 'aluminium-melting'],
+      ['Rapid Quenching System', 'rapid-quench'],
+      ['Ladle Pre Heater', 'ladle-preheater']
+    ],
+    ovens: [
+      ['Welding Rod Oven', 'welding-rod-oven'],
+      ['Hot Air Oven', 'hot-air-oven'],
+      ['Core Heating Oven', 'core-heating-oven'],
+      ['Electric Tray Dryer', 'electric-tray-dryer'],
+      ['Tray Dryer', 'tray-dryer'],
+      ['Industrial Oven', 'industrial-oven'],
+      ['Incubator', 'incubator'],
+      ['Powder Coating Oven', 'powder-coating-oven'],
+      ['Mould Heating Oven', 'mould-heating-oven']
+    ],
+    panels: [
+      ['36kW Thyristor Panel Controller', 'panel-36kw'],
+      ['60kW Thyristor Panel Controller', 'panel-60kw'],
+      ['40kW Thyristor Power Controller', 'panel-40kw'],
+      ['140kW Thyristor Power Controller', 'thyristor-140kw'],
+      ['Control Panel', 'control-panel']
+    ]
+  };
+
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+  function render(id, items) {
+    var el = document.getElementById('grid-' + id);
+    el.innerHTML = items.map(function (p) {
+      return '<article class="tile"><div class="ph"><img src="img/' + p[1] + '.jpg" alt="' + esc(p[0]) + '" loading="lazy"></div><h3>' + esc(p[0]) + '</h3></article>';
+    }).join('');
+  }
+  Object.keys(P).forEach(function (k) { render(k, P[k]); });
+
+  /* Equipment options in the form */
+  var sel = document.getElementById('f-interest');
+  [['Furnaces', P.furnaces.concat(P.melting)], ['Ovens', P.ovens], ['Control Panels', P.panels]].forEach(function (g) {
+    var og = document.createElement('optgroup'); og.label = g[0];
+    g[1].forEach(function (p) { var o = document.createElement('option'); o.textContent = p[0]; og.appendChild(o); });
+    sel.appendChild(og);
+  });
+  var other = document.createElement('option'); other.textContent = 'Other requirement'; sel.appendChild(other);
+
+  /* Routing */
+  var pages = ['home', 'products', 'infrastructure', 'contact'];
+  var alias = { furnaces: 'products', ovens: 'products', panels: 'products', services: 'products', about: 'infrastructure', founder: 'infrastructure', quote: 'contact' };
+  var header = document.getElementById('siteHeader');
+  var menuBtn = document.getElementById('menuBtn');
+  var band = document.getElementById('ctaBand');
+
+  function show(name, push) {
+    var page = pages.indexOf(name) > -1 ? name : (alias[name] || 'home');
+    pages.forEach(function (p) { document.getElementById('p-' + p).hidden = (p !== page); });
+    var links = document.querySelectorAll('.nav a.link');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('data-go') === page) links[i].setAttribute('aria-current', 'page');
+      else links[i].removeAttribute('aria-current');
+    }
+    band.hidden = (page === 'contact');
+    header.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    if (push) { try { if (location.hash !== '#' + name) location.hash = name; } catch (e) {} }
+    var target = (alias[name] && name !== 'quote') ? document.getElementById('s-' + name) : null;
+    if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+  }
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest ? ev.target.closest('[data-go]') : null;
+    if (!a) return;
+    ev.preventDefault();
+    show(a.getAttribute('data-go'), true);
+  });
+  window.addEventListener('hashchange', function () { show((location.hash || '').replace('#', '') || 'home', false); });
+  menuBtn.addEventListener('click', function () {
+    var open = header.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  var initial = 'home';
+  try { initial = (location.hash || '').replace('#', '') || 'home'; } catch (e) {}
+  show(initial, false);
+
+  /* Enquiry form */
+  var form = document.getElementById('quoteForm');
+  var summary = document.getElementById('summary');
+  var out = document.getElementById('summaryText');
+  var msg = document.getElementById('formMsg');
+  var copyStatus = document.getElementById('copyStatus');
+  function val(id) { return (document.getElementById(id).value || '').trim(); }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var required = ['f-name', 'f-company', 'f-phone', 'f-email', 'f-interest'];
+    for (var i = 0; i < required.length; i++) {
+      var el = document.getElementById(required[i]);
+      if (!el.value.trim()) { msg.textContent = 'Complete the fields marked with an asterisk.'; el.focus(); return; }
+    }
+    var email = document.getElementById('f-email');
+    if (email.validity && !email.validity.valid) { msg.textContent = 'Enter a valid email address.'; email.focus(); return; }
+    msg.textContent = '';
+    out.textContent = [
+      'Technical quote enquiry',
+      'D.K Thermal Tech Engineering, Shivamogga',
+      '',
+      'Name:       ' + val('f-name'),
+      'Company:    ' + val('f-company'),
+      'Phone:      ' + val('f-phone'),
+      'Email:      ' + val('f-email'),
+      'Equipment:  ' + val('f-interest'),
+      '',
+      'Requirement:',
+      val('f-spec') || 'Not given'
+    ].join('\n');
+    copyStatus.textContent = '';
+    form.hidden = true;
+    summary.hidden = false;
+    document.getElementById('quote').scrollIntoView();
+  });
+  document.getElementById('editBtn').addEventListener('click', function () {
+    summary.hidden = true; form.hidden = false; document.getElementById('f-name').focus();
+  });
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var text = out.textContent;
+    function fallback() {
+      try { var r = document.createRange(); r.selectNodeContents(out); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+      copyStatus.textContent = 'Press Ctrl+C or long-press to copy the selected text.';
+    }
+    try { navigator.clipboard.writeText(text).then(function () { copyStatus.textContent = 'Summary copied.'; }, fallback); }
+    catch (e) { fallback(); }
+  });
+})();
+</script>
+
+</body></html>
